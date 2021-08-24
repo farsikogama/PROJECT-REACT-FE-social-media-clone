@@ -1,0 +1,23 @@
+.navbar-container {
+  height: 50px;
+  width: 100%;
+  padding: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0e565d;
+  top: 0;
+  color: white;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+.link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link div {
+  margin: 0 15px;
+}

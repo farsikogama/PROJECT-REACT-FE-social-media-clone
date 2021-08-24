@@ -4,12 +4,15 @@ import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 
+// import styling
+import './layout.css'
+
 export default function Layout({ children }) {
   return (
     <div>
       <Navbar />
-      <div className='mt-4'>{children}</div>
-      <Footer />
+      <div className='layout-container'>{children}</div>
+      {/* <Footer /> */}
     </div>
   )
 }

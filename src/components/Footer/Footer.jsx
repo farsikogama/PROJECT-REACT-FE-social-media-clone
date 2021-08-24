@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react'
+import './footer.css'
 
 const Footer = () => {
   return (
     <Fragment>
-      <div> tess</div>
+      <div className='footer-container'> tess</div>
     </Fragment>
   )
 }
