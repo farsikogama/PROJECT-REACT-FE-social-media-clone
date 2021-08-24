@@ -1,0 +1,75 @@
+.container-card {
+  width: 70%;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 70%;
+  margin: 15px 0;
+  background: #fcf8d9;
+  border-radius: 20px;
+}
+
+.user-name {
+  padding: 10px;
+  border-radius: 20px 20px 0px 0px;
+  background: #0e565d;
+}
+
+.body-card {
+  padding: 15px;
+  border-radius: 20px 20px 0px 0px;
+  color: black;
+}
+.posting {
+  font-size: large;
+}
+
+.reply {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.reply input {
+  flex-basis: 85%;
+  margin: 0.5rem 0;
+  padding: 5px;
+  border: 0.5px solid rgba(0, 0, 0, 0.644);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.reply button {
+  cursor: pointer;
+  flex-basis: 10%;
+  margin: 0 10px;
+  background: #0e565d;
+  padding: 7px;
+
+  box-sizing: border-box;
+}
+
+.comments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px 0px 0px 25px;
+  font-size: smaller;
+}
+
+.img-comment {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.7rem;
+  background-color: #0e565d;
+  border-radius: 50%;
+}

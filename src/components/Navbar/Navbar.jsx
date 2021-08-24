@@ -7,10 +7,21 @@ const Navbar = () => {
       <div className='navbar-container'>
         <div className='logo'>Logo</div>
         <div className='link'>
-          <div>Home</div>
-          <div>Forum</div>
-          <div>Login</div>
-          <div>Register</div>
+          <div>
+            <a href='/'> Home</a>
+          </div>
+          <div>
+            <a href='/profile'>Profile</a>
+          </div>
+          <div>
+            <a href='/forum'>Forum</a>
+          </div>
+          <div>
+            <a href='/login'>Login</a>
+          </div>
+          <div>
+            <a href='/register'>Register</a>
+          </div>
         </div>
       </div>
     </Fragment>
