@@ -10,7 +10,7 @@ const ForumForm = () => {
     <Fragment>
       <form action='' className='container-forumform'>
         <input type='text' name='post' placeholder='What Is in Your Mind?' />
-        <button>Post</button>
+        <button className='approve'>Post</button>
       </form>
     </Fragment>
   )

@@ -8,6 +8,28 @@ a {
   color: white;
 }
 
+button {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.edit {
+  background: #18c8d8;
+  color: black;
+}
+
+.delete {
+  background: grey;
+  color: white;
+}
+
+.approve {
+  background: #0e565d;
+  color: white;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

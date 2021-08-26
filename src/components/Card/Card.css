@@ -28,6 +28,25 @@
 }
 .posting {
   font-size: large;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.posting p {
+  margin: 0;
+}
+
+.posting div {
+  margin-left: 1rem;
+}
+
+.posting button {
+  width: 60px;
+  height: 25px;
+  padding: 5px;
+  margin: 0 2px;
 }
 
 .reply {
@@ -39,7 +58,7 @@
 }
 
 .reply input {
-  flex-basis: 85%;
+  flex-basis: 87%;
   margin: 0.5rem 0;
   padding: 5px;
   border: 0.5px solid rgba(0, 0, 0, 0.644);
@@ -50,10 +69,8 @@
 .reply button {
   cursor: pointer;
   flex-basis: 10%;
-  margin: 0 10px;
-  background: #0e565d;
+  margin: 5px;
   padding: 7px;
-
   box-sizing: border-box;
 }
 

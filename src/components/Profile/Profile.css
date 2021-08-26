@@ -19,8 +19,6 @@
 
 .card-profile p {
   margin: 10px 0;
-  color: white;
-  /* font-weight: 600; */
 }
 
 .img-profile {
@@ -31,10 +29,8 @@
 }
 
 .card-profile button {
-  cursor: pointer;
   width: 90px;
-  margin-top: 30px;
-  background: #18c8d8;
+  margin: 30px 5px;
   font-weight: 500;
 }
 
