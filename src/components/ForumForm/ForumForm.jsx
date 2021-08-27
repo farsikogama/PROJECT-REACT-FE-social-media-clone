@@ -8,7 +8,7 @@ import './ForumForm.css'
 const ForumForm = props => {
   return (
     <Fragment>
-      <form onClick={props.handleSubmit} className='container-forumform'>
+      <form onSubmit={props.handleSubmit} className='container-forumform'>
         <input
           onChange={props.handleInputChange}
           type='text'

@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { updateUser } from '../../data/repository'
+import { updateUser, deleteUser } from '../../data/repository'
 
 // import component
 import Profile from '../../components/Profile/Profile'
@@ -73,6 +73,15 @@ const ProfilePage = props => {
     // Set error message.
     setErrorMessage(errorData)
   }
+
+  const handleDelete = () => {
+    const usernameLogin = localStorage.getItem('user')
+    deleteUser(usernameLogin)
+    props.logoutUser()
+    props.history.push('/')
+
+    return
+  }
   return (
     <Fragment>
       <div className='container-profilepage'>
@@ -81,6 +90,7 @@ const ProfilePage = props => {
           username={props.username}
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
+          handleDelete={handleDelete}
           fields={fields}
           errorMessage={errorMessage}
         />

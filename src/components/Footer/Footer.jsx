@@ -4,7 +4,10 @@ import './footer.css'
 const Footer = () => {
   return (
     <Fragment>
-      <div className='footer-container'> tess</div>
+      <div className='footer-container'>
+        {' '}
+        Basic Login and Logout Example with Functions and Hooks &copy; 2021
+      </div>
     </Fragment>
   )
 }

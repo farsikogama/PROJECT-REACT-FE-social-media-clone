@@ -2,23 +2,16 @@ const USERS_KEY = 'users'
 const USER_KEY = 'user'
 const EMAIL_KEY = 'email'
 
-function initUsers() {
-  if (localStorage.getItem(USERS_KEY !== null)) return
+// CREATE USERS REGISTER
+function registerUser(email, username, password) {
+  const users = getUsers() === null ? [] : getUsers()
 
-  const users = [
-    {
-      username: 'mbolger',
-      password: 'abc123',
-    },
-    {
-      username: 'shekhar',
-      password: 'def456',
-    },
-  ]
+  users.push({ email: email, username: username, password: password })
 
   localStorage.setItem(USERS_KEY, JSON.stringify(users))
 }
 
+// READ USERS ALL
 function getUsers() {
   // Extract user data from local storage.
   const data = localStorage.getItem(USERS_KEY)
@@ -27,7 +20,7 @@ function getUsers() {
   return JSON.parse(data)
 }
 
-// login purposes
+// READ USERS LOGIN
 function verifyUser(email, username, password) {
   const users = getUsers() === null ? [] : getUsers()
   for (const user of users) {
@@ -40,16 +33,7 @@ function verifyUser(email, username, password) {
   return false
 }
 
-// register purposes
-function registerUser(email, username, password) {
-  const users = getUsers() === null ? [] : getUsers()
-
-  users.push({ email: email, username: username, password: password })
-
-  localStorage.setItem(USERS_KEY, JSON.stringify(users))
-}
-
-// update data purpose
+// UPDATE USERS
 function updateUser(email, username, password, usernameLogin) {
   const users = getUsers() === null ? [] : getUsers()
 
@@ -64,6 +48,21 @@ function updateUser(email, username, password, usernameLogin) {
   setUser(username, email)
 }
 
+// UPDATE USERS
+function deleteUser(usernameLogin) {
+  const users = getUsers() === null ? [] : getUsers()
+
+  for (let i in users) {
+    if (users[i].username === usernameLogin) {
+      users.splice(users[i], 1)
+    }
+  }
+  localStorage.setItem(USERS_KEY, JSON.stringify(users))
+
+  removeUser()
+}
+
+// SUPPORTING FUNCTION
 function setUser(username, email) {
   localStorage.setItem(USER_KEY, username)
   localStorage.setItem(EMAIL_KEY, email)
@@ -77,17 +76,18 @@ function getEmail() {
   return localStorage.getItem(EMAIL_KEY)
 }
 
+// LOGOUT
 function removeUser() {
   localStorage.removeItem(USER_KEY)
   localStorage.removeItem(EMAIL_KEY)
 }
 
 export {
-  initUsers,
+  registerUser,
   verifyUser,
+  updateUser,
+  deleteUser,
   getUser,
   getEmail,
   removeUser,
-  registerUser,
-  updateUser,
 }

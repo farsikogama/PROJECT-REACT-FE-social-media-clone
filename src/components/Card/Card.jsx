@@ -45,7 +45,12 @@ const Card = props => {
           ))
         )}
       </div>
-      <Modal title='My Modal' onClose={() => setShow(false)} show={show}>
+      <Modal
+        type='editPost'
+        title='Edit Post'
+        onClose={() => setShow(false)}
+        show={show}
+      >
         <p>This is modal body</p>
       </Modal>
     </Fragment>

@@ -27,22 +27,19 @@ const LoginPage = props => {
   const handleSubmit = event => {
     event.preventDefault()
     const users = JSON.parse(localStorage.getItem('users'))
-    const email = () => {
-      for (let i in users) {
-        if (users[i].username === fields.username) {
-          return users[i].email
-        }
+
+    let useremail = ''
+    for (const user of users) {
+      if (fields.username === user.username) {
+        useremail = user.email
       }
-      return
     }
 
-    console.log(email)
-
-    const verified = verifyUser(email, fields.username, fields.password)
+    const verified = verifyUser(useremail, fields.username, fields.password)
 
     // If verified login the user.
     if (verified === true) {
-      props.loginUser(fields.username, fields.email)
+      props.loginUser(fields.username, useremail)
 
       // Navigate to the home page.
       props.history.push('/profile')

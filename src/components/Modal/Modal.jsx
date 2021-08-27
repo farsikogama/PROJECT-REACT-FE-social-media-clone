@@ -20,41 +20,63 @@ const Modal = props => {
       className={`modal ${props.show ? 'show' : ''}`}
       onClick={props.onClose}
     >
-      <div className='modal-content' onClick={e => e.stopPropagation()}>
-        <div className='modal-header'>
-          <h4 className='modal-title'>{props.title}</h4>
-          <button onClick={props.onClose}>Close</button>
+      {props.type === 'editProfile' ? (
+        <div className='modal-content' onClick={e => e.stopPropagation()}>
+          <div className='modal-header'>
+            <h4 className='modal-title'>{props.title}</h4>
+            <button onClick={props.onClose}>Close</button>
+          </div>
+          <div className='modal-body'>
+            <form onSubmit={props.handleSubmit}>
+              <input
+                type='email'
+                name='email'
+                placeholder='email'
+                className='formReg-control'
+                value={props.fields.email}
+                onChange={props.handleInputChange}
+              />
+              <input
+                type='text'
+                name='username'
+                placeholder='username'
+                className='formReg-control'
+                value={props.fields.username}
+                onChange={props.handleInputChange}
+              />
+              <input
+                type='text'
+                name='password'
+                placeholder='password'
+                className='formReg-control'
+                value={props.fields.password}
+                onChange={props.handleInputChange}
+              />
+              <button>Submit</button>
+            </form>
+          </div>
         </div>
-        <div className='modal-body'>
-          <form onSubmit={props.handleSubmit}>
-            <input
-              type='email'
-              name='email'
-              placeholder='email'
-              className='formReg-control'
-              value={props.fields.email}
-              onChange={props.handleInputChange}
-            />
-            <input
-              type='text'
-              name='username'
-              placeholder='username'
-              className='formReg-control'
-              value={props.fields.username}
-              onChange={props.handleInputChange}
-            />
-            <input
-              type='text'
-              name='password'
-              placeholder='password'
-              className='formReg-control'
-              value={props.fields.password}
-              onChange={props.handleInputChange}
-            />
-            <button>Submit</button>
-          </form>
+      ) : (
+        <div className='modal-content' onClick={e => e.stopPropagation()}>
+          <div className='modal-header'>
+            <h4 className='modal-title'>{props.title}</h4>
+            <button onClick={props.onClose}>Close</button>
+          </div>
+          <div className='modal-body'>
+            <form onSubmit={props.handleSubmit}>
+              <input
+                type='text'
+                name='post'
+                placeholder='post'
+                className='formReg-control'
+                // value={props.fields.email}
+                // onChange={props.handleInputChange}
+              />
+              <button>Submit</button>
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

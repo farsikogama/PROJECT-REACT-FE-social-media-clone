@@ -23,13 +23,14 @@ const Profile = props => {
             <button className='edit' onClick={() => setShow(true)}>
               Edit Profile
             </button>
-            <button className='delete'>
-              <a href='/'> Delete</a>
+            <button className='delete' onClick={props.handleDelete}>
+              Delete
             </button>
           </div>
         </div>
       </div>
       <Modal
+        type='editProfile'
         title='Edit Profile'
         onClose={() => setShow(false)}
         show={show}

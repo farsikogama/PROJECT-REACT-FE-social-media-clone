@@ -5,9 +5,9 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom'
-import { initUsers, getUser, getEmail, removeUser } from './data/repository'
+import { getUser, getEmail, removeUser } from './data/repository'
 
-// import components
+// import pages
 import Layout from './components/Layout/Layout'
 import Home from './pages/Home/Home'
 import Register from './pages/Register/RegisterPage'
@@ -17,8 +17,6 @@ import Profile from './pages/Profile/ProfilePage'
 
 // import styling
 import './App.css'
-
-// initUsers()
 
 function App() {
   const [username, setUsername] = useState(getUser())
@@ -73,6 +71,7 @@ function App() {
                     username={username}
                     useremail={useremail}
                     loginUser={loginUser}
+                    logoutUser={logoutUser}
                   />
                 )}
               />
