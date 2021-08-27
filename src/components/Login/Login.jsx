@@ -1,3 +1,5 @@
+import React from 'react'
+
 // import styling here
 import './Login.css'
 
@@ -6,23 +8,26 @@ const LoginComp = props => {
     <>
       <div className='formLog'>
         <h2>LOGIN</h2>
-        <form>
+        <form onSubmit={props.handleSubmit}>
           <input
-            type='email'
-            name='email'
-            placeholder='email'
+            type='text'
+            name='username'
+            placeholder='username'
+            value={props.fields.username}
+            onChange={props.handleInputChange}
             className='formLog-control'
-            // onChange={e => props.setEmail(e.target.value)}
           />
           <input
             type='password'
             name='password'
             placeholder='password'
             className='formLog-control'
-            // onChange={e => props.setPassword(e.target.value)}
+            value={props.fields.password}
+            onChange={props.handleInputChange}
           />
           <button>Log In</button>
         </form>
+        <div className='login-validation'>{props.errorMessage}</div>
       </div>
     </>
   )

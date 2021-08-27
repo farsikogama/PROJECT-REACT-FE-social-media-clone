@@ -5,13 +5,19 @@ import React, { Fragment } from 'react'
 // import styling
 import './ForumForm.css'
 
-const ForumForm = () => {
+const ForumForm = props => {
   return (
     <Fragment>
-      <form action='' className='container-forumform'>
-        <input type='text' name='post' placeholder='What Is in Your Mind?' />
+      <form onClick={props.handleSubmit} className='container-forumform'>
+        <input
+          onChange={props.handleInputChange}
+          type='text'
+          name='post'
+          placeholder='What Is in Your Mind?'
+        />
         <button className='approve'>Post</button>
       </form>
+      <div>{props.errorMessage}</div>
     </Fragment>
   )
 }

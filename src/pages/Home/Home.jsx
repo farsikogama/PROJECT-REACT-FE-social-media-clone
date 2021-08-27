@@ -5,12 +5,20 @@ import React, { Fragment } from 'react'
 // import styling
 import './Home.css'
 
-const Home = () => {
+const Home = props => {
   return (
     <Fragment>
       <div className='container-home'>
         <div className='text-home'>
-          <h1>WELCOME TO VC</h1>
+          {props.username === null ? (
+            <h1>WELCOME TO VC</h1>
+          ) : (
+            <h1>
+              Hi {props.username}! <br />
+              WELCOME TO VC
+            </h1>
+          )}
+
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo
             voluptatem dolore quos quis, dicta itaque autem harum laudantium

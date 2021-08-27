@@ -31,3 +31,11 @@ button {
   border-radius: 5px;
   padding: 10px;
 }
+
+.login-validation {
+  margin-top: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+  color: black;
+  font-size: small;
+}

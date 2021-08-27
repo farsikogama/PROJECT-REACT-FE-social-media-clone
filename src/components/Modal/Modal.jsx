@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
 import './Modal.css'
 
 const Modal = props => {
@@ -24,32 +23,36 @@ const Modal = props => {
       <div className='modal-content' onClick={e => e.stopPropagation()}>
         <div className='modal-header'>
           <h4 className='modal-title'>{props.title}</h4>
+          <button onClick={props.onClose}>Close</button>
         </div>
         <div className='modal-body'>
-          <input
-            type='email'
-            name='email'
-            placeholder='email'
-            className='formReg-control'
-            // onChange={e => props.setEmail(e.target.value)}
-          />
-          <input
-            type='text'
-            name='name'
-            placeholder='user name'
-            className='formReg-control'
-            // onChange={e => props.setPassword(e.target.value)}
-          />
-          <input
-            type='text'
-            name='password'
-            placeholder='password'
-            className='formReg-control'
-            // onChange={e => props.setPassword(e.target.value)}
-          />
-        </div>
-        <div className='modal-footer'>
-          <button onClick={props.onClose}>Close</button>
+          <form onSubmit={props.handleSubmit}>
+            <input
+              type='email'
+              name='email'
+              placeholder='email'
+              className='formReg-control'
+              value={props.fields.email}
+              onChange={props.handleInputChange}
+            />
+            <input
+              type='text'
+              name='username'
+              placeholder='username'
+              className='formReg-control'
+              value={props.fields.username}
+              onChange={props.handleInputChange}
+            />
+            <input
+              type='text'
+              name='password'
+              placeholder='password'
+              className='formReg-control'
+              value={props.fields.password}
+              onChange={props.handleInputChange}
+            />
+            <button>Submit</button>
+          </form>
         </div>
       </div>
     </div>

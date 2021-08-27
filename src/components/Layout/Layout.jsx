@@ -7,12 +7,16 @@ import Footer from '../Footer/Footer'
 // import styling
 import './layout.css'
 
-export default function Layout({ children }) {
+export default function Layout({ username, logoutUser, children }) {
   return (
     <div>
-      <Navbar />
+      <Navbar
+        className='layout-navbar'
+        username={username}
+        logoutUser={logoutUser}
+      />
       <div className='layout-container'>{children}</div>
-      {/* <Footer /> */}
+      <Footer className='tess' />
     </div>
   )
 }

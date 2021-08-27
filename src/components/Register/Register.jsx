@@ -6,30 +6,40 @@ const RegisterComp = props => {
     <>
       <div className='formLog'>
         <h2>Register</h2>
-        <form>
+        <form onSubmit={props.handleSubmit}>
           <input
             type='email'
             name='email'
             placeholder='email'
             className='formReg-control'
-            // onChange={e => props.setEmail(e.target.value)}
+            value={props.fields.email}
+            onChange={props.handleInputChange}
           />
           <input
             type='text'
-            name='name'
-            placeholder='user name'
-            className='formReg-control'
-            // onChange={e => props.setPassword(e.target.value)}
+            name='username'
+            placeholder='username'
+            value={props.fields.username}
+            onChange={props.handleInputChange}
+            className='formLog-control'
           />
           <input
             type='password'
             name='password'
             placeholder='password'
             className='formReg-control'
-            // onChange={e => props.setPassword(e.target.value)}
+            value={props.fields.password}
+            onChange={props.handleInputChange}
           />
           <button>Register</button>
         </form>
+        <div className='register-validation'>
+          <ul>
+            {props.errorMessage.map(x => (
+              <li>{x}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   )

@@ -1,5 +1,15 @@
 .layout-container {
   width: 100%;
-  min-height: 100vh;
+  min-height: 83vh;
   background: #272527;
+}
+
+.layout-navbar {
+  position: absolute;
+  bottom: 0;
+}
+
+.layout-footer {
+  position: absolute;
+  bottom: 0;
 }
