@@ -1,0 +1,27 @@
+.container-home {
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.gambar-home,
+.text-home {
+  flex-basis: 30%;
+}
+
+.text-home h1 {
+  margin: 30px 0;
+}
+
+.gambar-home img {
+  width: 400px;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.gambar-home:hover img {
+  cursor: pointer;
+  transform: translateY(-20px);
+}

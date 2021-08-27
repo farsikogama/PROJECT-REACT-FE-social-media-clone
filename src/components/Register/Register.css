@@ -1,0 +1,41 @@
+.formReg {
+  width: 250px;
+  border-radius: 20px;
+  padding: 30px 40px;
+  background-color: #fcf8d9;
+}
+
+.formReg h2 {
+  letter-spacing: 4px;
+  font-weight: bolder;
+  color: #0e565d;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formReg-control {
+  padding: 5px;
+  margin: 10px 0;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.register-validation {
+  margin-top: 10px;
+  padding: 5px;
+  box-sizing: border-box;
+  color: black;
+  font-size: small;
+}

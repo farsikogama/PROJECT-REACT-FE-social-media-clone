@@ -1,0 +1,24 @@
+.container-forumform {
+  width: 70%;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-forumform input {
+  flex-basis: 60%;
+  width: 200px;
+  margin: 0 10px;
+  padding: 15px;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.container-forumform button {
+  flex-basis: 10%;
+  margin: 0 5px;
+  height: 50px;
+}

@@ -1,0 +1,7 @@
+.container-registerpage {
+  height: 100%;
+  padding: 5rem 10rem; /*atas-bawah || atas-kanan-bawah-kiri*/
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}

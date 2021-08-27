@@ -1,6 +1,9 @@
 .footer-container {
   height: 50px;
   width: 100%;
-  background: black;
-  bottom: 0;
+  padding: 12px;
+  background: #0e565d;
+  font-size: smaller;
+  text-align: center;
+  box-sizing: border-box;
 }

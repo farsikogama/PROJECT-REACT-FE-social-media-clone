@@ -1,0 +1,39 @@
+.container-profile {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-profile {
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  padding: 30px 40px;
+  background-color: #0e565d;
+  border-radius: 30px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.568);
+  text-align: center;
+}
+
+.card-profile p {
+  margin: 10px 0;
+}
+
+.img-profile {
+  background: grey;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.card-profile button {
+  width: 90px;
+  margin: 30px 5px;
+  font-weight: 500;
+}
+
+.card-profile button a {
+  color: black;
+}
