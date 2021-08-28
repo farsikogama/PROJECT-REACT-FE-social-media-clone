@@ -1,16 +1,22 @@
 import React, { Fragment, useState } from 'react'
+import { createPosts, getPosts } from '../../data/post'
 
 // import components
 import ForumForm from '../../components/ForumForm/ForumForm'
 import Card from '../../components/Card/Card'
+import UploadImg from '../../components/Upload/Upload'
 
 // import styling
 import './Forum.css'
 
+// import data
+// import * as postsData from '../../data/posts.JSON'
+
 const Forum = props => {
   const [post, setPost] = useState('')
+  const [imgUrl, setimgUrl] = useState('')
+  const [comment, setComment] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
-  const [posts, setPosts] = useState([])
 
   const handleInputChange = event => {
     setPost(event.target.value)
@@ -28,12 +34,14 @@ const Forum = props => {
     }
 
     // Create post.
-    setPosts([...posts, { username: props.username, text: postTrimmed }])
+    createPosts(props.username, postTrimmed, imgUrl)
 
     // Reset post content.
     setPost('')
     setErrorMessage('')
   }
+
+  const posts = getPosts()
 
   return (
     <Fragment>
@@ -45,6 +53,7 @@ const Forum = props => {
         />
         <Card posts={posts} />
       </div>
+      <UploadImg />
     </Fragment>
   )
 }
