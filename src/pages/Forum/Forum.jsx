@@ -35,9 +35,30 @@ const Forum = props => {
     setErrorMessage('')
   }
 
+  const fileToDataUri = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      resolve(event.target.result)
+    };
+    reader.readAsDataURL(file);
+    })
+
+  const onChange = async (file) => {
+    if(!file) {
+      return;
+    }
+
+    fileToDataUri(file)
+      .then(dataUri => {
+        localStorage.setItem('imageURL', dataUri)
+      })
+  }
+
   return (
     <Fragment>
       <div className='container-forumpage'>
+        <input type="file" id="myFile" name="filename" onChange={(event) => onChange(event.target.files[0] || null)} />
+        <img src={localStorage.getItem('imageURL')} style={{border: "1px solid red", width: 200, height: 200}} alt="img" />
         <ForumForm
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
@@ -48,5 +69,4 @@ const Forum = props => {
     </Fragment>
   )
 }
-
 export default Forum
