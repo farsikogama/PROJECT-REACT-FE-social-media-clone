@@ -63,14 +63,13 @@ const Modal = props => {
             <button onClick={props.onClose}>Close</button>
           </div>
           <div className='modal-body'>
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={e => props.handleSubmitEdit(e, props.postIdEdit)}>
               <input
                 type='text'
                 name='post'
                 placeholder='post'
                 className='formReg-control'
-                // value={props.fields.email}
-                // onChange={props.handleInputChange}
+                onChange={props.handleInputChangeEdit}
               />
               <button>Submit</button>
             </form>

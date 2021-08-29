@@ -5,7 +5,7 @@ const COMMENTS_KEY = 'COMMENTS'
 function createPosts(username, content, imgUrl) {
   const posts = getPosts() === null ? [] : getPosts()
   posts.push({
-    id: posts.length + 1,
+    id: posts.length >= 1 ? posts[posts.length - 1].id + 1 : 1,
     author_id: username,
     content: content,
     content_img: imgUrl,
@@ -23,6 +23,19 @@ function getPosts() {
 }
 
 // UPDATE POST
+function updatePost(postId, editTrimmed) {
+  const posts = getPosts() === null ? [] : getPosts()
+
+  console.log(editTrimmed)
+  console.log(postId)
+
+  for (let i in posts) {
+    if (posts[i].id === postId) {
+      posts[i].content = editTrimmed
+    }
+  }
+  localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
+}
 
 // DELETE POST
 function deletePost(postId) {
@@ -69,4 +82,11 @@ function getComments() {
 
 // DELETE COMMENT
 
-export { createPosts, getPosts, createComment, getComments, deletePost }
+export {
+  createPosts,
+  getPosts,
+  createComment,
+  getComments,
+  deletePost,
+  updatePost,
+}

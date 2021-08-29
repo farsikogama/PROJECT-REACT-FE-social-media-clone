@@ -5,6 +5,7 @@ import {
   createComment,
   deletePost,
   getComments,
+  updatePost,
 } from '../../data/post'
 
 // import components
@@ -20,6 +21,7 @@ import './Forum.css'
 const Forum = props => {
   const [post, setPost] = useState('')
   const [posts, setPosts] = useState([])
+  const [edit, setEdit] = useState('')
   const [imgUrl, setimgUrl] = useState('')
   const [comment, setComment] = useState('')
   const [comments, setComments] = useState([])
@@ -80,6 +82,25 @@ const Forum = props => {
     setComment('')
   }
 
+  const handleInputChangeEdit = event => {
+    const valueEdit = event.target.value
+
+    // use spread operator.
+    setEdit(valueEdit)
+  }
+
+  const handleSubmitEdit = (event, postId) => {
+    event.preventDefault()
+
+    const editTrimmed = edit.trim()
+    // validation
+    updatePost(postId, editTrimmed)
+
+    // Reset password field to blank.
+    setEdit('')
+    window.location.reload()
+  }
+
   const getPostsData = () => {
     setPosts(getPosts() === null ? [] : getPosts())
   }
@@ -106,6 +127,8 @@ const Forum = props => {
           handleInputChangeComment={handleInputChangeComment}
           handleSubmitComment={handleSubmitComment}
           handleDeletePost={handleDeletePost}
+          handleInputChangeEdit={handleInputChangeEdit}
+          handleSubmitEdit={handleSubmitEdit}
           comments={comments}
         />
       </div>

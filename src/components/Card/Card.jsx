@@ -8,6 +8,7 @@ import './Card.css'
 
 const Card = props => {
   const [show, setShow] = useState(false)
+  const [postIdEdit, setPostIdEdit] = useState()
 
   return (
     <Fragment>
@@ -24,7 +25,13 @@ const Card = props => {
                 <div className='posting'>
                   <p>{item.content}</p>
                   <div>
-                    <button className='edit' onClick={() => setShow(true)}>
+                    <button
+                      className='edit'
+                      onClick={() => {
+                        setShow(true)
+                        setPostIdEdit(item.id)
+                      }}
+                    >
                       Edit
                     </button>
                     <button
@@ -72,6 +79,9 @@ const Card = props => {
         title='Edit Post'
         onClose={() => setShow(false)}
         show={show}
+        handleInputChangeEdit={props.handleInputChangeEdit}
+        handleSubmitEdit={props.handleSubmitEdit}
+        postIdEdit={postIdEdit}
       >
         <p>This is modal body</p>
       </Modal>

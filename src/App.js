@@ -60,7 +60,7 @@ function App() {
               <Route
                 exact
                 path='/forum'
-                render={props => <Forum username={username} />}
+                render={props => <Forum {...props} username={username} />}
               />
               <Route
                 exact

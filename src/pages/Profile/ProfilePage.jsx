@@ -32,7 +32,6 @@ const ProfilePage = props => {
 
     // getting username data to get index update
     const usernameLogin = localStorage.getItem('user')
-    console.log(usernameLogin)
 
     // validation
 
