@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import { getComments } from '../../data/post'
 
 // import component
 import Modal from '../Modal/Modal'
@@ -6,30 +7,10 @@ import Modal from '../Modal/Modal'
 // import styling
 import './Card.css'
 
-const commentsData = [
-  {
-    id: 1,
-    author_id: 'gama',
-    post_id: '',
-    comment: 'comment 1',
-  },
-
-  {
-    id: 2,
-    author_id: 'gama',
-    post_id: '',
-    comment: 'comment 2',
-  },
-  {
-    id: 3,
-    author_id: 'gama',
-    post_id: '',
-    comment: 'comment 3',
-  },
-]
-
 const Card = props => {
   const [show, setShow] = useState(false)
+
+  const commentsData = getComments() === null ? [] : getComments()
 
   return (
     <Fragment>
@@ -40,7 +21,7 @@ const Card = props => {
           props.posts.map(item => (
             <div className='card'>
               <div className='user-name'>
-                <p>{item.username}</p>
+                <p>{item.author_id}</p>
               </div>
               <div className='body-card'>
                 <div className='posting'>
@@ -52,14 +33,22 @@ const Card = props => {
                     <button className='delete'>Delete</button>
                   </div>
                 </div>
-                <div className='reply'>
-                  <input type='text' placeholder='comments' />
-                  <button className='approve'>reply</button>
+                <div>
+                  <form
+                    className='reply'
+                    onSubmit={e => props.handleSubmitComment(e, item.id)}
+                  >
+                    <input
+                      type='text'
+                      placeholder='comments'
+                      onChange={props.handleInputChangeComment}
+                    />
+                    <button className='approve'>reply</button>
+                  </form>
                 </div>
 
                 {item.comments.map(x => {
                   return commentsData.map(c => {
-                    console.log(c)
                     if (x === c.id) {
                       return (
                         <div className='comments'>

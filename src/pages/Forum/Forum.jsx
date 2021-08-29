@@ -1,10 +1,9 @@
 import React, { Fragment, useState } from 'react'
-import { createPosts, getPosts } from '../../data/post'
+import { createPosts, getPosts, createComment } from '../../data/post'
 
 // import components
 import ForumForm from '../../components/ForumForm/ForumForm'
 import Card from '../../components/Card/Card'
-import UploadImg from '../../components/Upload/Upload'
 
 // import styling
 import './Forum.css'
@@ -20,6 +19,10 @@ const Forum = props => {
 
   const handleInputChange = event => {
     setPost(event.target.value)
+  }
+
+  const handleInputChangeComment = event => {
+    setComment(event.target.value)
   }
 
   const handleSubmit = event => {
@@ -41,7 +44,20 @@ const Forum = props => {
     setErrorMessage('')
   }
 
-  const posts = getPosts()
+  const handleSubmitComment = (event, itemId) => {
+    event.preventDefault()
+
+    // Trim the post text.
+    const commentTrimmed = comment.trim()
+
+    // Create post.
+    createComment(props.username, commentTrimmed, itemId)
+
+    // Reset post content.
+    setComment('')
+  }
+
+  const posts = getPosts() === null ? [] : getPosts()
 
   return (
     <Fragment>
@@ -51,9 +67,12 @@ const Forum = props => {
           handleSubmit={handleSubmit}
           errorMessage={errorMessage}
         />
-        <Card posts={posts} />
+        <Card
+          posts={posts}
+          handleInputChangeComment={handleInputChangeComment}
+          handleSubmitComment={handleSubmitComment}
+        />
       </div>
-      <UploadImg />
     </Fragment>
   )
 }

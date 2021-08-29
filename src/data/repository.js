@@ -1,7 +1,6 @@
 const USERS_KEY = 'users'
 const USER_KEY = 'user'
 const EMAIL_KEY = 'email'
-const POSTS_KEY = 'POSTS'
 
 // CREATE USERS REGISTER
 function registerUser(email, username, password) {
@@ -10,7 +9,6 @@ function registerUser(email, username, password) {
   users.push({ email: email, username: username, password: password })
 
   localStorage.setItem(USERS_KEY, JSON.stringify(users))
-  localStorage.setItem(POSTS_KEY, JSON.stringify([]))
 }
 
 // READ USERS ALL
