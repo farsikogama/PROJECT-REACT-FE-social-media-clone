@@ -1,5 +1,10 @@
-import React, { Fragment, useState } from 'react'
-import { updateUser, deleteUser } from '../../data/repository'
+import React, { Fragment, useEffect, useState } from 'react'
+import {
+  updateUser,
+  updateUserImg,
+  deleteUser,
+  getUsers,
+} from '../../data/repository'
 
 // import component
 import Profile from '../../components/Profile/Profile'
@@ -14,6 +19,8 @@ const ProfilePage = props => {
     username: '',
     password: '',
   })
+  const [userImg, setUserImg] = useState('')
+  const [userData, setUserData] = useState({})
 
   const handleInputChange = event => {
     const name = event.target.name
@@ -59,7 +66,7 @@ const ProfilePage = props => {
 
       // Navigate to the home page.
       props.loginUser(fields.username, fields.email)
-      props.history.push('/')
+      window.location.reload()
 
       return
     }
@@ -81,10 +88,48 @@ const ProfilePage = props => {
 
     return
   }
+
+  const fileToDataUri = file =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = event => {
+        resolve(event.target.result)
+      }
+      reader.readAsDataURL(file)
+    })
+
+  const onChangeImg = async file => {
+    if (!file) {
+      return
+    }
+
+    fileToDataUri(file).then(dataUri => {
+      const usernameLogin = localStorage.getItem('user')
+      updateUserImg(usernameLogin, dataUri)
+      setUserImg(dataUri)
+    })
+  }
+  const getUserData = () => {
+    const users = getUsers() === null ? [] : getUsers()
+    const usernameLogin = localStorage.getItem('user')
+    for (const user of users) {
+      if (usernameLogin === user.username) {
+        setUserData(user)
+        return true
+      }
+    }
+  }
+
+  useEffect(() => {
+    getUserData()
+  }, [userImg, fields])
+
   return (
     <Fragment>
       <div className='container-profilepage'>
         <Profile
+          handleChangeImg={onChangeImg}
+          userData={userData}
           email={props.useremail}
           username={props.username}
           handleInputChange={handleInputChange}

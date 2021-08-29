@@ -21,11 +21,15 @@
   margin: 10px 0;
 }
 
-.img-profile {
-  background: grey;
+.img-profile img {
   width: 70px;
   height: 70px;
+  object-fit: cover;
   border-radius: 50%;
+}
+
+.image-upload > input {
+  display: none;
 }
 
 .card-profile button {

@@ -16,9 +16,22 @@
 }
 
 .user-name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
   padding: 10px;
   border-radius: 20px 20px 0px 0px;
   background: #0e565d;
+  font-weight: bold;
+}
+
+.img-post {
+  width: 25px;
+  height: 25px;
+  margin-right: 0.7rem;
+  background-color: white;
+  border-radius: 50%;
 }
 
 .body-card {
@@ -90,4 +103,9 @@
   margin-right: 0.7rem;
   background-color: #0e565d;
   border-radius: 50%;
+}
+
+.username-comment {
+  margin-right: 10px;
+  font-weight: bold;
 }

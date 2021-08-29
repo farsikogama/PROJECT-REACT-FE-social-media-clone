@@ -12,12 +12,26 @@ const Profile = props => {
   return (
     <Fragment>
       <div className='container-profile'>
-        <div className='img-profile'>
-          {/* <img src='/asset/img/home-img.jpg' alt='' /> */}
+        <div class='image-upload'>
+          <label for='myFile'>
+            <img src='/asset/icon/camera.png' alt='' />
+          </label>
+          <input
+            type='file'
+            id='myFile'
+            name='filename'
+            onChange={event =>
+              props.handleChangeImg(event.target.files[0] || null)
+            }
+          />
+          <div className='img-profile'>
+            <img src={props.userData.profileImg} alt='' />
+          </div>
         </div>
+
         <div className='card-profile'>
-          <p>{props.username}</p>
-          <p>{props.email}</p>
+          <p>{props.userData.username}</p>
+          <p>{props.userData.email}</p>
           <p>Thu 29 Jul 2021</p>
           <div className='profile-menu'>
             <button className='edit' onClick={() => setShow(true)}>

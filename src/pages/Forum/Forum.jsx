@@ -57,8 +57,6 @@ const Forum = props => {
   const handleDeletePost = (event, postId) => {
     event.preventDefault()
 
-    console.log(postId, 'ini postId')
-
     deletePost(postId)
     const data = getPosts() === null ? [] : getPosts()
 
@@ -109,6 +107,25 @@ const Forum = props => {
     setComments(getComments() === null ? [] : getComments())
   }
 
+  const fileToDataUri = file =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = event => {
+        resolve(event.target.result)
+      }
+      reader.readAsDataURL(file)
+    })
+
+  const onChange = async file => {
+    if (!file) {
+      return
+    }
+
+    fileToDataUri(file).then(dataUri => {
+      localStorage.setItem('imageURL', dataUri)
+    })
+  }
+
   useEffect(() => {
     getPostsData()
     getCommentsData()
@@ -123,6 +140,7 @@ const Forum = props => {
           errorMessage={errorMessage}
         />
         <Card
+          username={props.username}
           posts={posts}
           handleInputChangeComment={handleInputChangeComment}
           handleSubmitComment={handleSubmitComment}

@@ -52,21 +52,27 @@ const RegisterPage = props => {
         'Password must contain at least one numeric digit, one uppercase and one lowercase letter'
       )
     } else {
-      registerUser(fields.email, fields.username, fields.password)
-
-      const verified = verifyUser(
+      const registered = registerUser(
         fields.email,
         fields.username,
         fields.password
       )
+      errorData.push(registered.message)
 
-      // If verified login the user.
-      if (verified === true) {
-        props.loginUser(fields.username, fields.email)
+      if (registered === true) {
+        const verified = verifyUser(
+          fields.email,
+          fields.username,
+          fields.password
+        )
 
-        // Navigate to the home page.
-        props.history.push('/profile')
-        return
+        // If verified login the user.
+        if (verified === true) {
+          props.loginUser(fields.username, fields.email)
+
+          // Navigate to the home page.
+          props.history.push('/profile')
+        }
       }
     }
 

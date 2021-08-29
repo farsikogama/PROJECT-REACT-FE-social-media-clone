@@ -15,7 +15,15 @@ const ForumForm = props => {
           name='post'
           placeholder='What Is in Your Mind?'
         />
-        <button className='approve'>Post</button>
+        <input
+          type='file'
+          id='myFile'
+          name='filename'
+          onChange={event =>
+            props.handleChangeImg(event.target.files[0] || null)
+          }
+        />
+        <button className='approve'>Post </button>
       </form>
       <div>{props.errorMessage}</div>
     </Fragment>

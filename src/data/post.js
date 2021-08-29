@@ -38,12 +38,12 @@ function updatePost(postId, editTrimmed) {
 }
 
 // DELETE POST
-function deletePost(postId) {
+function deletePost(postId, username) {
   const posts = getPosts() === null ? [] : getPosts()
 
   for (let i in posts) {
     if (posts[i].id === postId) {
-      console.log(posts.splice(posts.indexOf(posts[i]), 1))
+      posts.splice(posts.indexOf(posts[i]), 1)
     }
   }
 

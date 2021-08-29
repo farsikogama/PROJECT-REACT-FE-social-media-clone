@@ -19,27 +19,34 @@ const Card = props => {
           props.posts.map(item => (
             <div className='card'>
               <div className='user-name'>
+                <div className='img-post'></div>
                 <p>{item.author_id}</p>
               </div>
               <div className='body-card'>
                 <div className='posting'>
                   <p>{item.content}</p>
                   <div>
-                    <button
-                      className='edit'
-                      onClick={() => {
-                        setShow(true)
-                        setPostIdEdit(item.id)
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className='delete'
-                      onClick={e => props.handleDeletePost(e, item.id)}
-                    >
-                      Delete
-                    </button>
+                    {props.username === item.author_id ? (
+                      <button
+                        className='edit'
+                        onClick={() => {
+                          setShow(true)
+                          setPostIdEdit(item.id)
+                        }}
+                      >
+                        Edit
+                      </button>
+                    ) : null}
+                    {props.username === item.author_id ? (
+                      <button
+                        className='delete'
+                        onClick={e =>
+                          props.handleDeletePost(e, item.id, item.author_id)
+                        }
+                      >
+                        Delete
+                      </button>
+                    ) : null}
                   </div>
                 </div>
                 <div>
@@ -62,6 +69,7 @@ const Card = props => {
                       return (
                         <div className='comments'>
                           <div className='img-comment'></div>
+                          <p className='username-comment'>{c.author_id}</p>
                           <p>{c.comment}</p>
                         </div>
                       )

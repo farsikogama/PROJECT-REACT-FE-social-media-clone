@@ -10,9 +10,23 @@ const { getPosts } = require('./post')
 function registerUser(email, username, password) {
   const users = getUsers() === null ? [] : getUsers()
 
-  users.push({ email: email, username: username, password: password })
-
+  for (let i in users) {
+    if (username === users[i].username || email === users[i].email) {
+      return {
+        status: false,
+        message:
+          'User already exist. Please choose different email and username',
+      }
+    }
+  }
+  users.push({
+    email: email,
+    username: username,
+    password: password,
+    profileImg: '',
+  })
   localStorage.setItem(USERS_KEY, JSON.stringify(users))
+  return true
 }
 
 // READ USERS ALL
@@ -50,6 +64,17 @@ function updateUser(email, username, password, usernameLogin) {
   }
   localStorage.setItem(USERS_KEY, JSON.stringify(users))
   setUser(username, email)
+}
+
+function updateUserImg(usernameLogin, imgUrl) {
+  const users = getUsers() === null ? [] : getUsers()
+
+  for (let i in users) {
+    if (users[i].username === usernameLogin) {
+      users[i].profileImg = imgUrl
+    }
+  }
+  localStorage.setItem(USERS_KEY, JSON.stringify(users))
 }
 
 // DELETE USERS
@@ -101,6 +126,8 @@ export {
   updateUser,
   deleteUser,
   getUser,
+  getUsers,
   getEmail,
   removeUser,
+  updateUserImg,
 }

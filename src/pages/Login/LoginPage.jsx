@@ -15,7 +15,6 @@ const LoginPage = props => {
     const name = event.target.name
     const value = event.target.value
 
-    console.log(name, value)
     // use spread operator.
     const temp = { ...fields }
 
@@ -43,7 +42,6 @@ const LoginPage = props => {
 
       // Navigate to the home page.
       props.history.push('/profile')
-      return
     }
 
     // Reset password field to blank.
