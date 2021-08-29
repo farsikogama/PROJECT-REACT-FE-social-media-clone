@@ -25,6 +25,17 @@ function getPosts() {
 // UPDATE POST
 
 // DELETE POST
+function deletePost(postId) {
+  const posts = getPosts() === null ? [] : getPosts()
+
+  for (let i in posts) {
+    if (posts[i].id === postId) {
+      console.log(posts.splice(posts.indexOf(posts[i]), 1))
+    }
+  }
+
+  localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
+}
 
 // CREATE COMMENT
 function createComment(username, comment, postId) {
@@ -58,4 +69,4 @@ function getComments() {
 
 // DELETE COMMENT
 
-export { createPosts, getPosts, createComment, getComments }
+export { createPosts, getPosts, createComment, getComments, deletePost }

@@ -1,5 +1,11 @@
-import React, { Fragment, useState } from 'react'
-import { createPosts, getPosts, createComment } from '../../data/post'
+import React, { Fragment, useState, useEffect } from 'react'
+import {
+  createPosts,
+  getPosts,
+  createComment,
+  deletePost,
+  getComments,
+} from '../../data/post'
 
 // import components
 import ForumForm from '../../components/ForumForm/ForumForm'
@@ -13,16 +19,14 @@ import './Forum.css'
 
 const Forum = props => {
   const [post, setPost] = useState('')
+  const [posts, setPosts] = useState([])
   const [imgUrl, setimgUrl] = useState('')
   const [comment, setComment] = useState('')
+  const [comments, setComments] = useState([])
   const [errorMessage, setErrorMessage] = useState(null)
 
   const handleInputChange = event => {
     setPost(event.target.value)
-  }
-
-  const handleInputChangeComment = event => {
-    setComment(event.target.value)
   }
 
   const handleSubmit = event => {
@@ -39,13 +43,32 @@ const Forum = props => {
     // Create post.
     createPosts(props.username, postTrimmed, imgUrl)
 
+    const data = getPosts() === null ? [] : getPosts()
+
+    setPosts(data)
+
     // Reset post content.
     setPost('')
     setErrorMessage('')
   }
 
-  const handleSubmitComment = (event, itemId) => {
+  const handleDeletePost = (event, postId) => {
     event.preventDefault()
+
+    console.log(postId, 'ini postId')
+
+    deletePost(postId)
+    const data = getPosts() === null ? [] : getPosts()
+
+    setPosts(data)
+  }
+
+  const handleInputChangeComment = event => {
+    setComment(event.target.value)
+  }
+
+  const handleSubmitComment = (event, itemId) => {
+    // event.preventDefault()
 
     // Trim the post text.
     const commentTrimmed = comment.trim()
@@ -57,7 +80,18 @@ const Forum = props => {
     setComment('')
   }
 
-  const posts = getPosts() === null ? [] : getPosts()
+  const getPostsData = () => {
+    setPosts(getPosts() === null ? [] : getPosts())
+  }
+
+  const getCommentsData = () => {
+    setComments(getComments() === null ? [] : getComments())
+  }
+
+  useEffect(() => {
+    getPostsData()
+    getCommentsData()
+  }, [])
 
   return (
     <Fragment>
@@ -71,6 +105,8 @@ const Forum = props => {
           posts={posts}
           handleInputChangeComment={handleInputChangeComment}
           handleSubmitComment={handleSubmitComment}
+          handleDeletePost={handleDeletePost}
+          comments={comments}
         />
       </div>
     </Fragment>

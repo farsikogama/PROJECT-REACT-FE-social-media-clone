@@ -1,6 +1,10 @@
 const USERS_KEY = 'users'
 const USER_KEY = 'user'
 const EMAIL_KEY = 'email'
+const POSTS_KEY = 'POSTS'
+
+// import post function
+const { getPosts } = require('./post')
 
 // CREATE USERS REGISTER
 function registerUser(email, username, password) {
@@ -54,10 +58,19 @@ function deleteUser(usernameLogin) {
 
   for (let i in users) {
     if (users[i].username === usernameLogin) {
-      users.splice(users[i], 1)
+      console.log(users.splice(users.indexOf(users[i]), 1))
     }
   }
   localStorage.setItem(USERS_KEY, JSON.stringify(users))
+
+  const posts = getPosts() === null ? [] : getPosts()
+
+  for (let i in posts) {
+    if (posts[i].author_id === usernameLogin) {
+      posts.splice(posts.indexOf(posts[i]), 1)
+    }
+  }
+  localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
 
   removeUser()
 }

@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react'
-import { getComments } from '../../data/post'
 
 // import component
 import Modal from '../Modal/Modal'
@@ -9,8 +8,6 @@ import './Card.css'
 
 const Card = props => {
   const [show, setShow] = useState(false)
-
-  const commentsData = getComments() === null ? [] : getComments()
 
   return (
     <Fragment>
@@ -30,7 +27,12 @@ const Card = props => {
                     <button className='edit' onClick={() => setShow(true)}>
                       Edit
                     </button>
-                    <button className='delete'>Delete</button>
+                    <button
+                      className='delete'
+                      onClick={e => props.handleDeletePost(e, item.id)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
                 <div>
@@ -48,7 +50,7 @@ const Card = props => {
                 </div>
 
                 {item.comments.map(x => {
-                  return commentsData.map(c => {
+                  return props.comments.map(c => {
                     if (x === c.id) {
                       return (
                         <div className='comments'>
