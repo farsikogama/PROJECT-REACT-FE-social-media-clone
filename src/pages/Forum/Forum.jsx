@@ -17,9 +17,6 @@ import Card from '../../components/Card/Card'
 // import styling
 import './Forum.css'
 
-// import data
-// import * as postsData from '../../data/posts.JSON'
-
 const Forum = props => {
   const [users, setUsers] = useState([])
   const [post, setPost] = useState('')

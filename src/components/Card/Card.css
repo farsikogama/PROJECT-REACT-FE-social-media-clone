@@ -44,6 +44,7 @@
   height: 25px;
   margin-right: 0.7rem;
   background-color: white;
+  border-radius: 50%;
 }
 
 .img-profile-forum img {
@@ -122,6 +123,7 @@
   height: 25px;
   margin-right: 0.7rem;
   background-color: #0e565d;
+  border-radius: 50%;
 }
 
 .img-comments img {
