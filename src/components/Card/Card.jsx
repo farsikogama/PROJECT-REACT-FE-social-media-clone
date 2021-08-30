@@ -1,5 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 
+import { getComments } from '../../data/post'
+
 // import component
 import Modal from '../Modal/Modal'
 
@@ -9,6 +11,7 @@ import './Card.css'
 const Card = props => {
   const [show, setShow] = useState(false)
   const [postIdEdit, setPostIdEdit] = useState()
+  const [comments, setComments] = useState([])
 
   const looping = author_id => {
     for (let i in props.users) {
@@ -18,8 +21,13 @@ const Card = props => {
     }
   }
 
+  const getCommentsData = () => {
+    setComments(getComments() === null ? [] : getComments())
+  }
+
   useEffect(() => {
     looping()
+    getCommentsData()
   }, [])
 
   return (
@@ -92,7 +100,7 @@ const Card = props => {
                 </div>
 
                 {item.comments.map(x => {
-                  return props.comments.map(c => {
+                  return comments.map(c => {
                     if (x === c.id) {
                       return (
                         <div className='comments'>
@@ -125,8 +133,8 @@ const Card = props => {
         title='Edit Post'
         onClose={() => setShow(false)}
         show={show}
-        handleInputChangeEdit={props.handleInputChangeEdit}
-        handleSubmitEdit={props.handleSubmitEdit}
+        handleInputChangeEditPost={props.handleInputChangeEditPost}
+        handleSubmitEditPost={props.handleSubmitEditPost}
         postIdEdit={postIdEdit}
       >
         <p>This is modal body</p>

@@ -4,7 +4,6 @@ import {
   getPosts,
   createComment,
   deletePost,
-  getComments,
   updatePost,
 } from '../../data/post'
 
@@ -13,25 +12,28 @@ import { getUsers } from '../../data/repository'
 // import components
 import ForumForm from '../../components/ForumForm/ForumForm'
 import Card from '../../components/Card/Card'
+import ModalAlert from '../../components/Modal/ModalAlert'
 
 // import styling
 import './Forum.css'
 
 const Forum = props => {
+  const [showError, setShowError] = useState(false)
+
   const [users, setUsers] = useState([])
   const [post, setPost] = useState('')
   const [posts, setPosts] = useState([])
   const [edit, setEdit] = useState('')
   const [imgUrl, setimgUrl] = useState('')
   const [comment, setComment] = useState('')
-  const [comments, setComments] = useState([])
   const [errorMessage, setErrorMessage] = useState(null)
+  const [commentErrorMessage, setCommentErrorMessage] = useState(null)
 
-  const handleInputChange = event => {
+  const handleInputChangePost = event => {
     setPost(event.target.value)
   }
 
-  const handleSubmit = event => {
+  const handleSubmitPost = event => {
     event.preventDefault()
 
     // Trim the post text.
@@ -74,21 +76,29 @@ const Forum = props => {
     // Trim the post text.
     const commentTrimmed = comment.trim()
 
+    if (commentTrimmed === '') {
+      setCommentErrorMessage('A comment cannot be empty.')
+      setShowError(true)
+
+      return
+    }
+
     // Create post.
     createComment(props.username, commentTrimmed, itemId)
 
     // Reset post content.
     setComment('')
+    setErrorMessage('')
   }
 
-  const handleInputChangeEdit = event => {
+  const handleInputChangeEditPost = event => {
     const valueEdit = event.target.value
 
     // use spread operator.
     setEdit(valueEdit)
   }
 
-  const handleSubmitEdit = (event, postId) => {
+  const handleSubmitEditPost = (event, postId) => {
     event.preventDefault()
 
     const editTrimmed = edit.trim()
@@ -127,14 +137,9 @@ const Forum = props => {
     setPosts(getPosts() === null ? [] : getPosts())
   }
 
-  const getCommentsData = () => {
-    setComments(getComments() === null ? [] : getComments())
-  }
-  console.log(users)
   useEffect(() => {
     getUsersData()
     getPostsData()
-    getCommentsData()
   }, [])
 
   return (
@@ -142,8 +147,8 @@ const Forum = props => {
       <div className='container-forumpage'>
         <ForumForm
           post={post}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
+          handleInputChangePost={handleInputChangePost}
+          handleSubmitPost={handleSubmitPost}
           handleChangeImg={onChangeImg}
           errorMessage={errorMessage}
         />
@@ -160,14 +165,20 @@ const Forum = props => {
           users={users}
           posts={posts}
           comment={comment}
-          comments={comments}
           handleInputChangeComment={handleInputChangeComment}
           handleSubmitComment={handleSubmitComment}
           handleDeletePost={handleDeletePost}
-          handleInputChangeEdit={handleInputChangeEdit}
-          handleSubmitEdit={handleSubmitEdit}
+          handleInputChangeEditPost={handleInputChangeEditPost}
+          handleSubmitEditPost={handleSubmitEditPost}
         />
       </div>
+      <ModalAlert
+        type='alertModal'
+        title={commentErrorMessage}
+        onClose={() => setShowError(false)}
+        showError={showError}
+        commentErrorMessage={commentErrorMessage}
+      ></ModalAlert>
     </Fragment>
   )
 }

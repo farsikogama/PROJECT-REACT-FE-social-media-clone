@@ -8,9 +8,9 @@ import './ForumForm.css'
 const ForumForm = props => {
   return (
     <Fragment>
-      <form onSubmit={props.handleSubmit} className='container-forumform '>
+      <form onSubmit={props.handleSubmitPost} className='container-forumform '>
         <input
-          onChange={props.handleInputChange}
+          onChange={props.handleInputChangePost}
           type='text'
           name='post'
           value={props.post}

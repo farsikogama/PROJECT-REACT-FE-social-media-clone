@@ -2,12 +2,14 @@ import React, { Fragment, useState } from 'react'
 
 // import components
 import Modal from '../Modal/Modal'
+import ModalAlert from '../Modal/ModalAlert'
 
 // import styling
 import './Profile.css'
 
 const Profile = props => {
   const [show, setShow] = useState(false)
+  const [showError, setShowError] = useState(false)
 
   return (
     <Fragment>
@@ -42,12 +44,13 @@ const Profile = props => {
             <button className='edit' onClick={() => setShow(true)}>
               Edit Profile
             </button>
-            <button className='delete' onClick={props.handleDelete}>
+            <button className='delete' onClick={() => setShowError(true)}>
               Delete
             </button>
           </div>
         </div>
       </div>
+      {/* modal edit */}
       <Modal
         type='editProfile'
         title='Edit Profile'
@@ -60,6 +63,14 @@ const Profile = props => {
       >
         <p>This is modal body</p>
       </Modal>
+      {/* modal alert */}
+      <ModalAlert
+        type='alertModal'
+        title='Are you sure want to delete your account?'
+        onClose={() => setShowError(false)}
+        handleDelete={props.handleDelete}
+        showError={showError}
+      ></ModalAlert>
     </Fragment>
   )
 }
