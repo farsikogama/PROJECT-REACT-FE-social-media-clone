@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +21,7 @@ import './App.css'
 function App() {
   const [username, setUsername] = useState(getUser())
   const [useremail, setUseremail] = useState(getEmail())
+  const [isAuth, setIsAuth] = useState(false)
 
   const loginUser = (username, email) => {
     setUsername(username)
@@ -32,6 +33,14 @@ function App() {
     setUsername(null)
     setUseremail(null)
   }
+
+  const checkAuth = () => {
+    localStorage.getItem('user') === null ? setIsAuth(false) : setIsAuth(true)
+  }
+
+  useEffect(() => {
+    checkAuth()
+  }, [])
 
   return (
     <Fragment>

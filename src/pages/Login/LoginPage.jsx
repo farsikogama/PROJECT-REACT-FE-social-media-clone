@@ -25,8 +25,10 @@ const LoginPage = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    const users = JSON.parse(localStorage.getItem('users'))
-
+    const users =
+      JSON.parse(localStorage.getItem('users')) === null
+        ? []
+        : JSON.parse(localStorage.getItem('users'))
     let useremail = ''
     for (const user of users) {
       if (fields.username === user.username) {
