@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 // import component
 import Modal from '../Modal/Modal'
@@ -10,6 +10,18 @@ const Card = props => {
   const [show, setShow] = useState(false)
   const [postIdEdit, setPostIdEdit] = useState()
 
+  const looping = author_id => {
+    for (let i in props.users) {
+      if (props.users[i].username === author_id) {
+        return props.users[i]
+      }
+    }
+  }
+
+  useEffect(() => {
+    looping()
+  }, [])
+
   return (
     <Fragment>
       <div className='container-card'>
@@ -19,9 +31,24 @@ const Card = props => {
           props.posts.map(item => (
             <div className='card'>
               <div className='user-name'>
-                <div className='img-post'></div>
-                <p>{item.author_id}</p>
+                {looping(item.author_id).profileImg === '' ? (
+                  <div className='img-profile-forum'></div>
+                ) : (
+                  <div className='img-profile-forum'>
+                    <img src={looping(item.author_id).profileImg} alt='' />
+                  </div>
+                )}
+
+                <p>{looping(item.author_id).username}</p>
               </div>
+              {item.content_img === '' ? (
+                <div></div>
+              ) : (
+                <div className='image-posted-forum'>
+                  <img src={item.content_img} alt='' />
+                </div>
+              )}
+
               <div className='body-card'>
                 <div className='posting'>
                   <p>{item.content}</p>
@@ -57,6 +84,7 @@ const Card = props => {
                     <input
                       type='text'
                       placeholder='comments'
+                      // value={props.comment}
                       onChange={props.handleInputChangeComment}
                     />
                     <button className='approve'>reply</button>
@@ -68,7 +96,17 @@ const Card = props => {
                     if (x === c.id) {
                       return (
                         <div className='comments'>
-                          <div className='img-comment'></div>
+                          {looping(c.author_id).profileImg === '' ? (
+                            <div className='img-comments'></div>
+                          ) : (
+                            <div className='img-comments'>
+                              <img
+                                src={looping(c.author_id).profileImg}
+                                alt=''
+                              />
+                            </div>
+                          )}
+
                           <p className='username-comment'>{c.author_id}</p>
                           <p>{c.comment}</p>
                         </div>

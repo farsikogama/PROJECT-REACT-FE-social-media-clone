@@ -13,6 +13,14 @@ const Profile = props => {
     <Fragment>
       <div className='container-profile'>
         <div class='image-upload'>
+          {props.userData.profileImg === '' ? (
+            <div className='img-profile'></div>
+          ) : (
+            <div className='img-profile'>
+              <img src={props.userData.profileImg} alt='' />
+            </div>
+          )}
+
           <label for='myFile'>
             <img src='/asset/icon/camera.png' alt='' />
           </label>
@@ -24,9 +32,6 @@ const Profile = props => {
               props.handleChangeImg(event.target.files[0] || null)
             }
           />
-          <div className='img-profile'>
-            <img src={props.userData.profileImg} alt='' />
-          </div>
         </div>
 
         <div className='card-profile'>

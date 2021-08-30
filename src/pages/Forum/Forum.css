@@ -4,3 +4,17 @@
   justify-content: center;
   align-items: center;
 }
+
+.image-preview-forum {
+  width: 70%;
+  height: 200px;
+  margin: 20px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.image-preview-forum img {
+  width: 65%;
+  height: 100%;
+  object-fit: cover;
+}
