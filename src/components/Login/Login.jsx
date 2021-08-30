@@ -10,10 +10,10 @@ const LoginComp = props => {
         <h2>LOGIN</h2>
         <form onSubmit={props.handleSubmit}>
           <input
-            type='text'
-            name='username'
-            placeholder='username'
-            value={props.fields.username}
+            type='email'
+            name='email'
+            placeholder='email'
+            value={props.fields.email}
             onChange={props.handleInputChange}
             className='formLog-control'
           />

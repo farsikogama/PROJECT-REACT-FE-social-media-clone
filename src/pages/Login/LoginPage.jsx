@@ -8,7 +8,7 @@ import Login from '../../components/Login/Login'
 import './LoginPage.css'
 
 const LoginPage = props => {
-  const [fields, setFields] = useState({ username: '', password: '' })
+  const [fields, setFields] = useState({ email: '', password: '' })
   const [errorMessage, setErrorMessage] = useState(null)
 
   const handleInputChange = event => {
@@ -29,18 +29,18 @@ const LoginPage = props => {
       JSON.parse(localStorage.getItem('users')) === null
         ? []
         : JSON.parse(localStorage.getItem('users'))
-    let useremail = ''
+    let username = ''
     for (const user of users) {
-      if (fields.username === user.username) {
-        useremail = user.email
+      if (fields.email === user.email) {
+        username = user.username
       }
     }
 
-    const verified = verifyUser(useremail, fields.username, fields.password)
+    const verified = verifyUser(username, fields.email, fields.password)
 
     // If verified login the user.
     if (verified === true) {
-      props.loginUser(fields.username, useremail)
+      props.loginUser(username, fields.email)
 
       // Navigate to the home page.
       props.history.push('/profile')
@@ -52,7 +52,7 @@ const LoginPage = props => {
     setFields(temp)
 
     // Set error message.
-    setErrorMessage('Username and / or password invalid, please try again.')
+    setErrorMessage('Email and / or password invalid, please try again.')
   }
 
   return (

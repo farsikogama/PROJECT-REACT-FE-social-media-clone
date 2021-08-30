@@ -61,10 +61,11 @@ const RegisterPage = props => {
 
       if (registered === true) {
         const verified = verifyUser(
-          fields.email,
           fields.username,
+          fields.email,
           fields.password
         )
+        console.log(verified)
 
         // If verified login the user.
         if (verified === true) {

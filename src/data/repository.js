@@ -39,10 +39,10 @@ function getUsers() {
 }
 
 // READ USERS LOGIN
-function verifyUser(email, username, password) {
+function verifyUser(username, email, password) {
   const users = getUsers() === null ? [] : getUsers()
   for (const user of users) {
-    if (username === user.username && password === user.password) {
+    if (email === user.email && password === user.password) {
       setUser(username, email)
       return true
     }
