@@ -4,7 +4,7 @@
 
 | Front End |   Database    | Back End | Library Tambahan |
 | :-------: | :-----------: | :------: | :--------------: |
-| React Js  | local storage |    -     |       none       |
+| React Js  | local storage |   none   |       none       |
 
 ## Menjalankan Proyek ini di Local
 
@@ -20,7 +20,6 @@
 2. Install dependencies
 
    ```
-   Buka dua terminal:
 
    cd my-app npm install
 
@@ -30,7 +29,7 @@
 3. Buka terminal dan jalankan proyek dengan perintah
 
    ```
-   Open Terminal 1 : cd client
+   cd my-app
 
    npm start
 
@@ -71,7 +70,7 @@
 
    ```
 
-4. Image Handling
+4. Image Handling (Blob)
 
    ```
    https://stackoverflow.com/questions/61985832/how-to-load-image-and-convert-to-blob-in-react/61986029
