@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Challenge Yohannes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Stack yang digunakan
 
-## Available Scripts
+| Front End |   Database    | Back End | Library Tambahan |
+| :-------: | :-----------: | :------: | :--------------: |
+| React Js  | local storage |    -     |       none       |
 
-In the project directory, you can run:
+## Menjalankan Proyek ini di Local
 
-### `npm start`
+1. Git Clone repositori dan masuk ke dalam folder proyek
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   ```
+   git clone https://github.com/farsikogama/forumPages.git
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   cd my-app
 
-### `npm test`
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install dependencies
 
-### `npm run build`
+   ```
+   Buka dua terminal:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   cd my-app npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```
 
-### `npm run eject`
+3. Buka terminal dan jalankan proyek dengan perintah
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```
+   Open Terminal 1 : cd client
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. Menggunakan browser, akses proyek di `http://localhost:3000`
 
-## Learn More
+## Halaman yang tersedia
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+|  Route/URL  |          Keterangan          |
+| :---------: | :--------------------------: |
+|   `/home`   |         landing page         |
+|  `/login`   |    untuk melakukan login     |
+| `/register` |  untuk melakukan registrasi  |
+| `/profile`  |      detail profil user      |
+|  `/forum`   | halaman utama berisi posting |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Referensi
 
-### Code Splitting
+1. Local Storage Api
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```
+   Guru Yohannes Source Code
 
-### Analyzing the Bundle Size
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. React-Modal Component
 
-### Making a Progressive Web App
+   ```
+   https://medium.com/tinyso/how-to-create-a-modal-component-in-react-from-basic-to-advanced-a3357a2a716a
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   ```
 
-### Advanced Configuration
+3. Array Method
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   ```
+   https://www.w3schools.com/js/js_array_methods.asp
 
-### Deployment
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+4. Image Handling
 
-### `npm run build` fails to minify
+   ```
+   https://stackoverflow.com/questions/61985832/how-to-load-image-and-convert-to-blob-in-react/61986029
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```

@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { getComments } from '../../data/post'
 
 // import component
-import Modal from '../Modal/ModalAlert'
+import Modal from '../Modal/Modal'
 
 // import styling
 import './Card.css'
@@ -12,6 +12,8 @@ const Card = props => {
   const [show, setShow] = useState(false)
   const [postIdEdit, setPostIdEdit] = useState()
   const [comments, setComments] = useState([])
+
+  console.log(show)
 
   const looping = author_id => {
     for (let i in props.users) {
