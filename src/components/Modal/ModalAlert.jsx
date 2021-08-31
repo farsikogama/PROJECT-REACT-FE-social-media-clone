@@ -17,7 +17,7 @@ const Modal = props => {
 
   return (
     <div
-      className={`modal ${props.showError ? 'show' : ''}`}
+      className={`modal ${props.showAlert ? 'show' : ''}`}
       onClick={props.onClose}
     >
       {props.type === 'alertModal' ? (

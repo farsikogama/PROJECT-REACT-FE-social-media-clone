@@ -9,7 +9,7 @@ import './Profile.css'
 
 const Profile = props => {
   const [show, setShow] = useState(false)
-  const [showError, setShowError] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
 
   return (
     <Fragment>
@@ -44,7 +44,7 @@ const Profile = props => {
             <button className='edit' onClick={() => setShow(true)}>
               Edit Profile
             </button>
-            <button className='delete' onClick={() => setShowError(true)}>
+            <button className='delete' onClick={() => setShowAlert(true)}>
               Delete
             </button>
           </div>
@@ -67,9 +67,9 @@ const Profile = props => {
       <ModalAlert
         type='alertModal'
         title='Are you sure want to delete your account?'
-        onClose={() => setShowError(false)}
+        onClose={() => setShowAlert(false)}
         handleDelete={props.handleDelete}
-        showError={showError}
+        showAlert={showAlert}
       ></ModalAlert>
     </Fragment>
   )

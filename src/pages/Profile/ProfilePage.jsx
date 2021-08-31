@@ -62,11 +62,22 @@ const ProfilePage = props => {
         'Password must contain at least one numeric digit, one uppercase and one lowercase letter'
       )
     } else {
-      updateUser(fields.email, fields.username, fields.password, usernameLogin)
+      const updatedUser = updateUser(
+        fields.email,
+        fields.username,
+        fields.password,
+        usernameLogin
+      )
 
-      // Navigate to the home page.
-      props.loginUser(fields.username, fields.email)
-      window.location.reload()
+      if (updatedUser.status === false) {
+        errorData.push(updatedUser.message)
+      } else {
+        // Navigate to the home page.
+        props.loginUser(fields.username, fields.email)
+        window.location.reload()
+      }
+
+      setErrorMessage(errorData)
 
       return
     }
@@ -77,7 +88,7 @@ const ProfilePage = props => {
     setFields(temp)
 
     // Set error message.
-    setErrorMessage(errorData)
+    window.location.reload()
   }
 
   const handleDelete = () => {

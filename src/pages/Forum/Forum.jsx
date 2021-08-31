@@ -18,7 +18,7 @@ import ModalAlert from '../../components/Modal/ModalAlert'
 import './Forum.css'
 
 const Forum = props => {
-  const [showError, setShowError] = useState(false)
+  const [showAlert, setShowAlert] = useState(false)
 
   const [users, setUsers] = useState([])
   const [post, setPost] = useState('')
@@ -71,14 +71,14 @@ const Forum = props => {
   }
 
   const handleSubmitComment = (event, itemId) => {
-    // event.preventDefault()
+    event.preventDefault()
 
     // Trim the post text.
     const commentTrimmed = comment.trim()
 
     if (commentTrimmed === '') {
       setCommentErrorMessage('A comment cannot be empty.')
-      setShowError(true)
+      setShowAlert(true)
 
       return
     }
@@ -89,6 +89,7 @@ const Forum = props => {
     // Reset post content.
     setComment('')
     setErrorMessage('')
+    window.location.reload()
   }
 
   const handleInputChangeEditPost = event => {
@@ -173,10 +174,10 @@ const Forum = props => {
         />
       </div>
       <ModalAlert
-        type='alertModal'
+        type='alertComment'
         title={commentErrorMessage}
-        onClose={() => setShowError(false)}
-        showError={showError}
+        onClose={() => setShowAlert(false)}
+        showAlert={showAlert}
         commentErrorMessage={commentErrorMessage}
       ></ModalAlert>
     </Fragment>

@@ -52,6 +52,11 @@ const Modal = props => {
                 value={props.fields.password}
                 onChange={props.handleInputChange}
               />
+              <p>
+                {props.errorMessage.length === 0
+                  ? 'Are you sure you want to edit your account?'
+                  : props.errorMessage}{' '}
+              </p>
               <button>Submit</button>
             </form>
           </div>

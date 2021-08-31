@@ -2,9 +2,11 @@ const USERS_KEY = 'users'
 const USER_KEY = 'user'
 const EMAIL_KEY = 'email'
 const POSTS_KEY = 'POSTS'
+const COMMENTS_KEY = 'COMMENTS'
 
 // import post function
 const { getPosts } = require('./post')
+const { getComments } = require('./post')
 
 // CREATE USERS REGISTER
 function registerUser(email, username, password) {
@@ -56,14 +58,46 @@ function updateUser(email, username, password, usernameLogin) {
   const users = getUsers() === null ? [] : getUsers()
 
   for (let i in users) {
+    if (users[i].username === username || users[i].email === email) {
+      return {
+        status: false,
+        message:
+          'User already exist. Please choose different email and username',
+      }
+    }
+  }
+
+  for (let i in users) {
     if (users[i].username === usernameLogin) {
       users[i].email = email
       users[i].username = username
       users[i].password = password
+      users[i].profileImg = users[i].profileImg
     }
   }
+
+  const posts = getPosts() === null ? [] : getPosts()
+
+  for (let i in posts) {
+    if (posts[i].author_id === usernameLogin) {
+      posts[i].author_id = username
+    }
+  }
+
+  const comments = getComments() === null ? [] : getComments()
+
+  for (let i in comments) {
+    if (comments[i].author_id === usernameLogin) {
+      comments[i].author_id = username
+    }
+  }
+
   localStorage.setItem(USERS_KEY, JSON.stringify(users))
+  localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
+  localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments))
+
   setUser(username, email)
+  return true
 }
 
 function updateUserImg(usernameLogin, imgUrl) {

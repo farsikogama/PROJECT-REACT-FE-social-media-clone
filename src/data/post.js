@@ -26,9 +26,6 @@ function getPosts() {
 function updatePost(postId, editTrimmed) {
   const posts = getPosts() === null ? [] : getPosts()
 
-  console.log(editTrimmed)
-  console.log(postId)
-
   for (let i in posts) {
     if (posts[i].id === postId) {
       posts[i].content = editTrimmed
@@ -36,17 +33,6 @@ function updatePost(postId, editTrimmed) {
   }
   localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
 }
-
-// function updatePostImg(usernameLogin, imgUrl) {
-//   const posts = getPosts() === null ? [] : getPosts()
-
-//   for (let i in posts) {
-//     if (posts[i].author_id === usernameLogin) {
-//       posts[i].content_img = imgUrl
-//     }
-//   }
-//   localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
-// }
 
 // DELETE POST
 function deletePost(postId) {

@@ -21,11 +21,16 @@ import './App.css'
 function App() {
   const [username, setUsername] = useState(getUser())
   const [useremail, setUseremail] = useState(getEmail())
-  const [isAuth, setIsAuth] = useState(false)
+  const [isAuthenticated, setAuthenticated] = useState(false)
+
+  const setAuth = boolean => {
+    setAuthenticated(boolean)
+  }
 
   const loginUser = (username, email) => {
     setUsername(username)
     setUseremail(email)
+    setAuth(true)
   }
 
   const logoutUser = () => {
@@ -34,13 +39,7 @@ function App() {
     setUseremail(null)
   }
 
-  const checkAuth = () => {
-    localStorage.getItem('user') === null ? setIsAuth(false) : setIsAuth(true)
-  }
-
-  useEffect(() => {
-    checkAuth()
-  }, [])
+  useEffect(() => {}, [])
 
   return (
     <Fragment>
@@ -57,19 +56,29 @@ function App() {
               <Route
                 exact
                 path='/login'
-                render={props => <Login {...props} loginUser={loginUser} />}
+                render={props => (
+                  <Login {...props} setAuth={setAuth} loginUser={loginUser} />
+                )}
               />
 
               <Route
                 exact
                 path='/register'
-                render={props => <Register {...props} loginUser={loginUser} />}
+                render={props => (
+                  <Register
+                    {...props}
+                    setAuth={setAuth}
+                    loginUser={loginUser}
+                  />
+                )}
               />
 
               <Route
                 exact
                 path='/forum'
-                render={props => <Forum {...props} username={username} />}
+                render={props => (
+                  <Forum {...props} setAuth={setAuth} username={username} />
+                )}
               />
               <Route
                 exact
