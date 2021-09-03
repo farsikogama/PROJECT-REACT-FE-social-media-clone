@@ -14,7 +14,7 @@ const Profile = props => {
   return (
     <Fragment>
       <div className='container-profile'>
-        <div class='image-upload'>
+        <div className='image-upload'>
           {props.userData.profileImg === '' ? (
             <div className='img-profile'></div>
           ) : (
@@ -23,7 +23,7 @@ const Profile = props => {
             </div>
           )}
 
-          <label for='myFile'>
+          <label htmlFor='myFile'>
             <img src='/asset/icon/camera.png' alt='' />
           </label>
           <input
@@ -39,7 +39,7 @@ const Profile = props => {
         <div className='card-profile'>
           <p>{props.userData.username}</p>
           <p>{props.userData.email}</p>
-          <p>Thu 29 Jul 2021</p>
+          <p> Joined on : {props.userData.registered_date}</p>
           <div className='profile-menu'>
             <button className='edit' onClick={() => setShow(true)}>
               Edit Profile

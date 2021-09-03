@@ -12,6 +12,7 @@ const { getComments } = require('./post')
 function registerUser(email, username, password) {
   const users = getUsers() === null ? [] : getUsers()
 
+  // validation check username and email already use or not
   for (let i in users) {
     if (username === users[i].username || email === users[i].email) {
       return {
@@ -21,11 +22,17 @@ function registerUser(email, username, password) {
       }
     }
   }
+
+  // get current date
+  const dt = new Date()
+
+  // put the data into local storage
   users.push({
     email: email,
     username: username,
     password: password,
     profileImg: '',
+    registered_date: dt.toString().split(' ').splice(1, 3).join(' '),
   })
   localStorage.setItem(USERS_KEY, JSON.stringify(users))
   return true
@@ -72,7 +79,6 @@ function updateUser(email, username, password, usernameLogin) {
       users[i].email = email
       users[i].username = username
       users[i].password = password
-      users[i].profileImg = users[i].profileImg
     }
   }
 
@@ -115,21 +121,44 @@ function updateUserImg(usernameLogin, imgUrl) {
 function deleteUser(usernameLogin) {
   const users = getUsers() === null ? [] : getUsers()
 
+  // get user data
   for (let i in users) {
     if (users[i].username === usernameLogin) {
-      console.log(users.splice(users.indexOf(users[i]), 1))
+      users.splice(users.indexOf(users[i]), 1)
     }
   }
   localStorage.setItem(USERS_KEY, JSON.stringify(users))
 
+  // get user posts data
   const posts = getPosts() === null ? [] : getPosts()
-
   for (let i in posts) {
     if (posts[i].author_id === usernameLogin) {
-      posts.splice(posts.indexOf(posts[i]), 1)
+      // console.log('ini post ke', posts[i])
+      posts.splice(posts.indexOf(posts[i]))
     }
   }
   localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
+
+  // get user comments data
+  const commentsData = getComments() === null ? [] : getComments()
+
+  for (let i in commentsData) {
+    if (commentsData[i].author_id === usernameLogin) {
+      // delete comments id inside array of comment whose user deleted
+      const posts = getPosts() === null ? [] : getPosts()
+      for (let j in posts) {
+        const arrayOfComments = posts[j].comments
+        for (let z in arrayOfComments) {
+          if (arrayOfComments[z] === commentsData[i].id) {
+            arrayOfComments.splice(arrayOfComments.indexOf(arrayOfComments[z]))
+          }
+        }
+      }
+      localStorage.setItem(POSTS_KEY, JSON.stringify(posts))
+      commentsData.splice(commentsData.indexOf(commentsData[i]))
+    }
+  }
+  localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsData))
 
   removeUser()
 }

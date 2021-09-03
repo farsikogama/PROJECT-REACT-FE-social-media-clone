@@ -13,8 +13,6 @@ const Card = props => {
   const [postIdEdit, setPostIdEdit] = useState()
   const [comments, setComments] = useState([])
 
-  console.log(show)
-
   const looping = author_id => {
     for (let i in props.users) {
       if (props.users[i].username === author_id) {

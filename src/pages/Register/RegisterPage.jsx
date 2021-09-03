@@ -69,7 +69,6 @@ const RegisterPage = props => {
         // If verified login the user.
         if (verified === true) {
           props.loginUser(fields.username, fields.email)
-          props.setAuth(true)
 
           // Navigate to the home page.
           props.history.push('/profile')

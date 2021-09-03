@@ -17,7 +17,7 @@ const ForumForm = props => {
           placeholder='What Is in Your Mind?'
         />
         <div className='image-uploadforum'>
-          <label for='myFile'>
+          <label htmlFor='myFile'>
             <img src='/asset/icon/camera.png' alt='' />
           </label>
           <input

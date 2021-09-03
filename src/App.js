@@ -1,10 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { getUser, getEmail, removeUser } from './data/repository'
 
 // import pages
@@ -21,16 +16,10 @@ import './App.css'
 function App() {
   const [username, setUsername] = useState(getUser())
   const [useremail, setUseremail] = useState(getEmail())
-  const [isAuthenticated, setAuthenticated] = useState(false)
-
-  const setAuth = boolean => {
-    setAuthenticated(boolean)
-  }
 
   const loginUser = (username, email) => {
     setUsername(username)
     setUseremail(email)
-    setAuth(true)
   }
 
   const logoutUser = () => {
@@ -56,29 +45,19 @@ function App() {
               <Route
                 exact
                 path='/login'
-                render={props => (
-                  <Login {...props} setAuth={setAuth} loginUser={loginUser} />
-                )}
+                render={props => <Login {...props} loginUser={loginUser} />}
               />
 
               <Route
                 exact
                 path='/register'
-                render={props => (
-                  <Register
-                    {...props}
-                    setAuth={setAuth}
-                    loginUser={loginUser}
-                  />
-                )}
+                render={props => <Register {...props} loginUser={loginUser} />}
               />
 
               <Route
                 exact
                 path='/forum'
-                render={props => (
-                  <Forum {...props} setAuth={setAuth} username={username} />
-                )}
+                render={props => <Forum {...props} username={username} />}
               />
               <Route
                 exact

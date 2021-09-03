@@ -120,6 +120,7 @@ const ProfilePage = props => {
       setUserImg(dataUri)
     })
   }
+
   const getUserData = () => {
     const users = getUsers() === null ? [] : getUsers()
     const usernameLogin = localStorage.getItem('user')

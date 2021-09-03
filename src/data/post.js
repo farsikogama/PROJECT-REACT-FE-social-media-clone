@@ -51,7 +51,7 @@ function deletePost(postId) {
 function createComment(username, comment, postId) {
   const comments = getComments() === null ? [] : getComments()
   comments.push({
-    id: comments.length + 1,
+    id: comments.length >= 1 ? comments[comments.length - 1].id + 1 : 1,
     author_id: username,
     comment: comment,
   })

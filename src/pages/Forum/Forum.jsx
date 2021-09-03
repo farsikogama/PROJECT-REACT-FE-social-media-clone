@@ -6,7 +6,6 @@ import {
   deletePost,
   updatePost,
 } from '../../data/post'
-
 import { getUsers } from '../../data/repository'
 
 // import components
