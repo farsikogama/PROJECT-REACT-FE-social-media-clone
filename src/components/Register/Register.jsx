@@ -8,20 +8,21 @@ const RegisterComp = props => {
         <h2>Register</h2>
         <form onSubmit={props.handleSubmit}>
           <input
+            type='text'
+            name='username'
+            placeholder='name'
+            value={props.fields.username}
+            onChange={props.handleInputChange}
+            className='formLog-control'
+          />
+
+          <input
             type='email'
             name='email'
             placeholder='email'
             className='formReg-control'
             value={props.fields.email}
             onChange={props.handleInputChange}
-          />
-          <input
-            type='text'
-            name='username'
-            placeholder='username'
-            value={props.fields.username}
-            onChange={props.handleInputChange}
-            className='formLog-control'
           />
           <input
             type='password'
